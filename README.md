@@ -1,6 +1,6 @@
 # timers
 
-![screenshot](./src/assets/img-2023-03-25-00-33-18)
+![screenshot](./src/assets/img-2023-03-25-00-33-18.png)
 
 Задание:
 Создать страницу с секундомерами. 
