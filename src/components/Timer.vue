@@ -1,21 +1,21 @@
 <template>
   <div class="timer">
     <div class="timer__time">
-        {{ timer.seconds }}
+        {{ renderTimer }}
     </div>
     <div class="timer__controls">
-        <button class="timer__start">
-            <svg class="svg" width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0 20V0L17 10L0 20Z" fill="#9E9E9E"/>
-            </svg>
-        </button>
-        <button class="timer__pause">
+        <button v-if="active" class="timer__pause" @click="pauseTimer">
             <svg width="10" height="20" viewBox="0 0 10 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect x="7" width="3" height="20" fill="#9E9E9E"/>
                 <rect width="3" height="20" fill="#9E9E9E"/>
             </svg>
         </button>
-        <button class="timer__stop">
+        <button v-if="!active" class="timer__start" @click="startTimer">
+            <svg class="svg" width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 20V0L17 10L0 20Z" fill="#9E9E9E"/>
+            </svg>
+        </button>
+        <button class="timer__stop" @click="stopTimer">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect width="20" height="20" fill="#9E9E9E"/>
             </svg>
@@ -30,9 +30,38 @@ import { defineComponent } from 'vue'
 export default defineComponent({
     props: ["timer"],
     data() {
-        return {
-            timers: [1, 2, 3]
+      return {
+          seconds: this.$props.timer.seconds,
+          intervalId: null,
+          active: false
+      }
+    },
+    computed: {
+        renderTimer() {
+            const h = Math.floor(this.seconds / 3600);
+            const m = Math.floor(this.seconds / 60) % 60;
+            const s = this.seconds % 60;
+            return `${h}:${m}:${s}`
         }
+    },
+    methods: {
+        startTimer() {
+            this.active = true
+            this.intervalId = setInterval(() => {
+            if (this.seconds > 0) {
+                this.seconds--;
+            }
+            }, 1000)
+        },
+        stopTimer() {
+            this.active = false;
+            clearInterval(this.intervalId);
+            this.seconds = 0;
+        },
+        pauseTimer() {
+            this.active = false;
+            clearInterval(this.intervalId);
+        },
     }
 })
 </script>
@@ -59,6 +88,7 @@ export default defineComponent({
     &__start,
     &__pause,
     &__stop {
+        width: 30px;
         border: none;
         background-color: transparent;
         cursor: pointer;

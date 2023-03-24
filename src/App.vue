@@ -1,6 +1,10 @@
 <template>
   <div class="container">
-    <timer v-for="timer in timers" :key="timer.id" :timer="timer"/>
+    <timer 
+      v-for="timer in timers" 
+      :key="timer.id" 
+      :timer="timer"
+    />
     <button class="add" @click="addTimer">
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect x="8.5" width="3" height="20" fill="#9E9E9E"/>
@@ -21,13 +25,13 @@ export default defineComponent({
   },
   data() {
       return {
-          timers: [{id: 1, seconds: 300}, {id: 2, seconds: 3600}]
+          timers: [{id: 1, seconds: 3}, {id: 2, seconds: 3600}]
       }
   },
   methods: {
     addTimer() {
       this.timers.push(4)
-    }
+    },
   }
 })
 
