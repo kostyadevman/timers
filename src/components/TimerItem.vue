@@ -1,10 +1,10 @@
 <template>
-  <div class="timer">
-    <div class="timer__time" :class="{ active: this.active}">
+  <div class="timer" :class="{ active: this.active}">
+    <div class="timer__time">
         {{ renderTimer }}
     </div>
     <div class="timer__controls">
-        <button v-if="active" class="timer__pause" :class="{ active: this.active}" @click="pauseTimer">
+        <button v-if="active" class="timer__pause" @click="pauseTimer">
             <svg width="10" height="20" viewBox="0 0 10 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect x="7" width="3" height="20" fill="#9E9E9E"/>
                 <rect width="3" height="20" fill="#9E9E9E"/>
@@ -15,7 +15,7 @@
                 <path d="M0 20V0L17 10L0 20Z" fill="#9E9E9E"/>
             </svg>
         </button>
-        <button class="timer__stop" :class="{ active: this.active}" @click="stopTimer">
+        <button class="timer__stop" @click="stopTimer">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect width="20" height="20" fill="#9E9E9E"/>
             </svg>
@@ -113,8 +113,11 @@ export default defineComponent({
 
 }
 
-.timer .active {
-    color: var(--c-white);
+.timer.active {
+    .timer__time {
+        color: var(--c-white);
+        border-bottom-color: var(--c-white);
+    }
     svg rect {
         fill: var(--c-white);;
     }
