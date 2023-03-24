@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <timer 
+    <timer-item 
       v-for="timer in timers" 
       :key="timer.id" 
       :timer="timer"
@@ -16,12 +16,13 @@
 
 <script>
 import { defineComponent } from 'vue'
-import Timer from '@/components/Timer.vue'
+import TimerItem from '@/components/TimerItem.vue'
+
 
 
 export default defineComponent({
   components: {
-    Timer,
+    TimerItem
   },
   data() {
       return {
@@ -30,23 +31,41 @@ export default defineComponent({
   },
   methods: {
     addTimer() {
-      this.timers.push(4)
+      this.timers.push({
+        id: this.timers.length + 1,
+        seconds: Math.floor(Math.random() * 50000)
+      })
     },
   }
 })
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
 .container {
   display: flex;
   flex-wrap: wrap;
-  gap: 50px;
+  gap: 45px 50px;
   width: 775px;
+  margin: 72px auto 72px;
+
+  @media (max-width: 1025px) {
+    width: 500px;
+  }
+
+  @media (max-width: 769px) {
+    width: 225px;
+  }
 }
 .add {
   width: 225px;
   height: 120px;
+  border: none;
+  background-color: var(--c-light-gray);
+  &:hover {
+      opacity: .7;
+      cursor: pointer;
+  }
 }
 </style>
