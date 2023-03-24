@@ -1,14 +1,16 @@
 # timers
 
-This template should help get you started developing with Vue 3 in Vite.
+![screenshot](./src/assets/img-2023-03-25-00-33-18)
 
-## Recommended IDE Setup
+Задание:
+Создать страницу с секундомерами. 
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+Каждый секундомер должен иметь 3 функции:
+1. Запуск
+2. Пауза
+3. Сброс
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+Кроме секундомеров на странице должна быть кнопка, которая добавляет новый секундомер в список.
 
 ## Project Setup
 
