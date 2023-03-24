@@ -41,7 +41,14 @@ export default defineComponent({
             const h = Math.floor(this.seconds / 3600);
             const m = Math.floor(this.seconds / 60) % 60;
             const s = this.seconds % 60;
-            return `${h}:${m}:${s}`
+            if (h) {
+                return `${h}:${this.format(m)}:${this.format(s)}`
+            }
+            if (m) {
+                return `${m}:${this.format(s)}`
+            }
+
+            return `${s}`
         }
     },
     methods: {
@@ -64,6 +71,9 @@ export default defineComponent({
             this.active = false;
             clearInterval(this.intervalId);
         },
+        format(t) {
+            return t < 10 ? '0' + t : t;
+        }
     }
 })
 </script>
